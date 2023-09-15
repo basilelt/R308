@@ -79,7 +79,7 @@ def inf_list(lst:list) -> int:
     ceil = 3
     count = 0
     list_choice = test_bool(
-                input("Voulez-vous choisir le seuil ?\n",
+                input("Voulez-vous choisir le seuil ?\n"
                       "Oui: 1 / Non: 0 : ")
                 )
     if list_choice:
@@ -97,54 +97,82 @@ def dictionnaire(dico:dict, cara:str):
     """
         Fonction qui affiche l'ensemble des données d'un dictionnaire.
     """
-    for key, value in dico:
+    for key, value in dico.items():
         print(cara, " ", key, " ", value)
 
 
 # Choix de la fonction à exécuter
 choice = test_selector(
-            input("Sélectionnez la fonction à exécuter:\n",
-                  "Maximum: 1\n",
-                  "Supérieur: 2\n",
-                  "Maximum Liste: 3\n",
-                  "Inférieur Liste: 4\n",
-                  "Dictionnaire: 5\n",
+            input("Sélectionnez la fonction à exécuter:\n"
+                  "Maximum: 1\n"
+                  "Supérieur: 2\n"
+                  "Maximum Liste: 3\n"
+                  "Inférieur Liste: 4\n"
+                  "Dictionnaire: 5\n"
                   " -> ")
             )
 
-if choice is 1:
+if choice == 1:
     print("Retourne le plus grand nombre de deux réels.")
-    maximum(
-        test_float(input("Entrez le 1er nombre: ")),
-        test_float(input("Entrez le 2ème nombre: "))
-    )
+    print(maximum(
+            test_float(input('Entrez le 1er nombre: ')),
+            test_float(input('Entrez le 2ème nombre: ')))
+        )
 
-elif choice is 2:
+elif choice == 2:
     print("Indique si la valeur est supérieure à un seuil.")
     x = input("Veuillez choisir un nombre: ")
     ceil_choice = test_bool(
-                    input("Voulez-vous choisir le seuil ?\n",
+                    input("Voulez-vous choisir le seuil ?\n"
                           "Oui: 1 / Non: 0 : ")
                 )
     if ceil_choice:
-        superieur(x, input("Entrez le seuil: "))
+        print(superieur(x, input("Entrez le seuil: ")))
     else:
          superieur(x)
 
-elif choice is 3:
+elif choice == 3:
     print("La plus grande valeur d'une liste.")
     stop = False
     lst=[]
     while stop is False:
         lst.append(input("Entrez un nouveau nombre (x pour arrêter): "))
-        if lst[-1] is "x":
+        if lst[-1] == "x":
             stop = True
             lst.pop()
     
-    max_list(lst)
+    print(f"{max_list(lst)} est le maximum.")
 
 
-elif choice is 4:
+elif choice == 4:
     print("Le nombre de valeurs d'une liste inférieure à un seuil.")
+    stop = False
+    lst=[]
+    while stop is False:
+        lst.append(input("Entrez un nouveau nombre (x pour arrêter): "))
+        if lst[-1] == "x":
+            stop = True
+            lst.pop()
+    print(inf_list(lst))
+    
 
-elif choice is 5:
+elif choice == 5:
+    print("Affiche l'ensemble des données d'un dictionnaire.")
+    test_cara = test_bool(
+                    input("Voulez-vous ajouter une chaîne de caractères ?\n"
+                          "Oui: 1 / Non: 0 : ")
+                )
+    if test_cara:
+        cara = input("Veuillez entrer votre chaîne: ")
+    else:
+        cara = ""
+    
+    print("Entrez vos key et value du dictionnaire (x pour arrêter): ")
+    dico = {}
+    while True:
+        key = input("Key: ")
+        if key == "x":
+            break
+        dico.update({key:input(f"Value ({key}): ")})
+    
+    dictionnaire(dico, cara)
