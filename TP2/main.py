@@ -11,6 +11,7 @@ from classes.special import Mage, Guerrier
 def main():
     player1 = Personnage("player1", 2)
     player2 = Personnage("player2", 5)
+    print(player2)
     print(f"\n{player1.combat(player2)}\n")
     
     player3 = Personnage("player3")

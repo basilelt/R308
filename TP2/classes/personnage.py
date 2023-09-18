@@ -32,22 +32,22 @@ class Personnage:
     '''Getter'''
     # Récupère la valeur de l'initiative
     @property
-    def initiative(self):
+    def initiative(self) -> int:
         return self.__initiative
     
     # Récupère la valeur des pv
     @property
-    def pv(self):
+    def pv(self) -> float:
         return self.__pv
     
     # Récupère le pseudo
     @property
-    def pseudo(self):
+    def pseudo(self) -> str:
         return self.__pseudo
     
     # Récupère le niveau
     @property
-    def niveau(self):
+    def niveau(self) -> int:
         return self.__niveau
     
 
