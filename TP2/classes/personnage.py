@@ -29,30 +29,46 @@ class Personnage:
         return f'Le personnage "{self.__pseudo}" est au niveau {self.__niveau}, il lui reste {self.__pv} et a une initiative de {self.__initiative}'
 
 
+    '''Getter'''
     # Récupère la valeur de l'initiative
-    def get_initiative(self):
+    @property
+    def initiative(self):
         return self.__initiative
     
     # Récupère la valeur des pv
-    def get_pv(self):
+    @property
+    def pv(self):
         return self.__pv
     
     # Récupère le pseudo
-    def get_pseudo(self):
+    @property
+    def pseudo(self):
         return self.__pseudo
     
     # Récupère le niveau
-    def get_niveau(self):
+    @property
+    def niveau(self):
         return self.__niveau
     
 
+    ''' Setter '''
     # Redéfinie le nombre de pv
-    def set_pv(self, new_pv:float):
-        if isinstance(new_pv, Union(int, float)):
+    @pv.setter
+    def pv(self, new_pv:float):
+        if isinstance(new_pv, Union[int, float]):
             self.__pv = new_pv
         
         else:
             raise TypeError("La nouvelle valeur des pv n'est pas un int ou un float")
+        
+    # Redéfinie l'initiative
+    @initiative.setter
+    def initiative(self, new_initiative):
+        if isinstance(new_initiative, int):
+            self.__initiative = new_initiative
+        
+        else:
+            raise TypeError("La nouvelle valeur de l'initiative n'est pas un int")
     
 
     def __attaque(self, cible:'Personnage') -> str:
@@ -60,80 +76,99 @@ class Personnage:
             Test si self à une plus grande initiative que la cible
         '''
         # Self frappe la cible
-        if self.__initiative > cible.get_initiative():
+        if self.__initiative > cible.initiative:
             # Si l'attaque de self est supérieure ou égale aux pv de la cible, celle-ci meurt
-            if self.__niveau >= cible.get_pv():
-                cible.set_pv(0)
-                return f"{cible.get_pseudo()} a perdu {self.__niveau}pv et est mort"
+            if self.__niveau >= cible.pv:
+                cible.pv = 0
+                return f"{cible.pseudo} a perdu {self.__niveau}pv et est mort"
             
             # Sinon elle contre attaque
             else:
                 # La cible se prend les dégats de self
-                cible.set_pv(cible.get_pv() - self.__niveau)
-                print(f"{cible.get_pseudo()} a perdu {self.__niveau}pv, il a maintenant {cible.get_pv()}pv")
+                cible.pv = cible.pv - self.__niveau
+                print(f"{cible.pseudo} a perdu {self.__niveau}pv, il a maintenant {cible.pv}pv")
                 
                 # Si l'attaque de la cible est supérieure ou égale aux pv de self, celui-ci meurt
-                if cible.get_niveau() >= self.__pv:
+                if cible.niveau >= self.__pv:
                     self.__pv = 0
-                    return f"{self.__pseudo()} a perdu {cible.get_niveau()}pv et est mort"
+                    return f"{self.__pseudo} a perdu {cible.niveau}pv et est mort"
                 
                 # Si self survie, on met à jour ses pv
                 else:
-                    self.__pv = self.__pv - cible.get_niveau()
-                    return f"{self.__pseudo()} a perdu {cible.get_niveau()}pv, il a maintenant {self.__pv()}pv"
+                    self.__pv = self.__pv - cible.niveau
+                    return f"{self.__pseudo} a perdu {cible.niveau}pv, il a maintenant {self.__pv}pv"
                  
         # La cible frappe self
-        elif self.__initiative < cible.get_initiative():
+        elif self.__initiative < cible.initiative:
             # Si l'attaque de la cible est supérieure ou égale aux pv de self, celui-ci meurt
-            if cible.get_niveau() >= self.__pv:
+            if cible.niveau >= self.__pv:
                 self.__pv = 0
-                return f"{self.__pseudo()} a perdu {cible.get_niveau()}pv et est mort"
+                return f"{self.__pseudo} a perdu {cible.niveau}pv et est mort"
             
             # Sinon elle contre attaque
             else:
                 # Self se prend les dégats de la cible
-                self.__pv = self.__pv - cible.get_niveau()
-                print(f"{self.__pseudo()} a perdu {cible.get_niveau()}pv, il a maintenant {self.__pv()}pv")
+                self.__pv = self.__pv - cible.niveau
+                print(f"{self.__pseudo} a perdu {cible.niveau}pv, il a maintenant {self.__pv}pv")
                 
                 # Si l'attaque de self est supérieure ou égale aux pv de la cible, celle-ci meurt
-                if self.__niveau >= cible.get_pv():
-                    cible.set_pv(0)
-                    return f"{cible.get_pseudo()} a perdu {self.__niveau}pv et est mort"
+                if self.__niveau >= cible.pv:
+                    cible.pv = 0
+                    return f"{cible.pseudo} a perdu {self.__niveau}pv et est mort"
                 
                 # Si la cible survie, on met à jour ses pv
                 else:
-                    cible.set_pv(cible.get_pv() - self.__niveau)
-                    return f"{cible.get_pseudo()} a perdu {self.__niveau}pv, il a maintenant {cible.get_pv()}pv"
+                    cible.pv = cible.pv - self.__niveau
+                    return f"{cible.pseudo} a perdu {self.__niveau}pv, il a maintenant {cible.pv}pv"
 
 
         # Self et la cible s'attaque mutuellement
         else:
             # Si l'attaque de la cible est supérieure ou égale aux pv de self, celui-ci meurt
-            if cible.get_niveau() >= self.__pv:
+            if cible.niveau >= self.__pv:
                 self.__pv = 0
-                return f"{self.__pseudo()} a perdu {cible.get_niveau()}pv et est mort"
+                return f"{self.__pseudo} a perdu {cible.niveau}pv et est mort"
             
             # Si self survie, on met à jour ses pv
             else:
-                self.__pv = self.__pv - cible.get_niveau()
-                print(f"{self.__pseudo()} a perdu {cible.get_niveau()}pv, il a maintenant {self.__pv()}pv")
+                self.__pv = self.__pv - cible.niveau
+                print(f"{self.__pseudo} a perdu {cible.niveau}pv, il a maintenant {self.__pv}pv")
             
             # Si l'attaque de self est supérieure ou égale aux pv de la cible, celle-ci meurt
-            if self.__niveau >= cible.get_pv():
-                cible.set_pv(0)
-                return f"{cible.get_pseudo()} a perdu {self.__niveau}pv et est mort"
+            if self.__niveau >= cible.pv:
+                cible.pv = 0
+                return f"{cible.pseudo} a perdu {self.__niveau}pv et est mort"
             
             # Si la cible survie, on met à jour ses pv
             else:
-                cible.set_pv(cible.get_pv() - self.__niveau)
-                return f"{cible.get_pseudo()} a perdu {self.__niveau}pv, il a maintenant {cible.get_pv()}pv"
+                cible.pv = cible.pv - self.__niveau
+                return f"{cible.pseudo} a perdu {self.__niveau}pv, il a maintenant {cible.pv}pv"
 
 
-    def combat():
+    def combat(self, cible:'Personnage') -> str:
         '''
-            Met en place
+            Met en place les attaques jusqu'à ce que mort s'en suive
         '''
+        # Tant que les deux personnages ont encore de la vie le combat continue
+        while self.__pv > 0 and cible.pv > 0:
+            print(self.__attaque(cible))
+        
+        if self.__pv == 0 and cible.pv == 0:
+            self.soigner()
+            cible.soigner()
+            return f"{self.__pseudo} et {cible.pseudo} sont tous les deux morts, égalité"
+        
+        elif self.__pv == 0:
+            self.soigner()
+            return f"{cible.pseudo} a gagné"
+        
+        else:
+            cible.soigner()
+            return f"{self.__pseudo} a gagné"
 
 
-
-    def soigner():
+    def soigner(self) -> None:
+        '''
+            Soigne les pv de self et les met à la valeur de son niveau
+        '''
+        self.__pv = self.__niveau
