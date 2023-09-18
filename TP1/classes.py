@@ -146,4 +146,4 @@ class Rectangle:
 
 class Triangle:
     def __init__(self, ):
-        
+        return
