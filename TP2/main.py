@@ -6,17 +6,19 @@ path.insert(0, ospath.join(__file__.replace("main.py", ""), "classes"))
 
 from classes.personnage import Personnage
 from classes.special import Mage, Guerrier
+from classes.joueur import Joueur
 
 
 def main():
-    player1 = Personnage("player1", 2)
-    player2 = Personnage("player2", 5)
-    print(player2)
-    print(f"\n{player1.combat(player2)}\n")
+    mob1 = Personnage("mob1", 2)
+    mob2 = Personnage("mob2", 5)
+    print(mob2)
+    print(f"\n{mob1.combat(mob2)}\n")
+    print(mob2)
     
-    player3 = Personnage("player3")
-    player4 = Personnage("player4")
-    print(f"\n{player3.combat(player4)}\n")
+    mob3 = Personnage("mob3")
+    mob4 = Personnage("mob4")
+    print(f"\n{mob3.combat(mob4)}\n")
 
     mage1 = Mage("mage1")
     guerrier1 = Guerrier("guerrier1")
@@ -27,8 +29,10 @@ def main():
     print(f"\n{mage2.combat(guerrier2)}\n")
 
 
+    player1 = Joueur("player1", 3)
+    player2 = Joueur("player2", 5, [mob1, mage1, guerrier1])
+    print(player2)
+
+
 if __name__ == "__main__":
-    '''
-        Exécute la fonction main si le nom du fichier exécuté est main.py
-    '''
     exit(main())
