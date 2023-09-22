@@ -33,6 +33,11 @@ def main():
     player2 = Joueur("player2", 5, [mob1, mage1, guerrier1])
     print(player2)
 
+    print(f"\n{print(mage1)}")
+    mage1.lvl = 10
+    print(mage1)
+
+
 
 if __name__ == "__main__":
     exit(main())

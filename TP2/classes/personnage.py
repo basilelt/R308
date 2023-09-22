@@ -1,5 +1,6 @@
 from typing import Union
 
+import special
 
 # Classe pour les personnage d'un MMORPG
 class Personnage:
@@ -44,7 +45,7 @@ class Personnage:
             raise TypeError("Le pseudo n'est pas un str ou le niveau n'est pas un int")
     
     def __str__(self) -> str:
-        return f'Le personnage "{self.__pseudo}" est au niveau {self.__niveau}, il lui reste {self.__pv} et a une initiative de {self.__initiative}'
+        return f'Le personnage "{self.__pseudo}" est au niveau {self.__niveau}, il lui reste {self.__pv}pv et a une initiative de {self.__initiative}'
 
 
     # Getters
@@ -97,20 +98,15 @@ class Personnage:
         
     @niveau.setter
     def niveau(self, new_niveau):
-        if isinstance(self, Personnage):
-            if isinstance(new_niveau, int):
-                self.__niveau = new_niveau
-                self.__pv = new_niveau
-                self.__initiative = new_niveau
-            
-            else:
-                raise TypeError("La nouvelle valeur du niveau n'est pas un int")
-            
-        elif isinstance(self, Guerrier):
+        if isinstance(new_niveau, int):
+            self.__niveau = new_niveau
+            self.__pv = new_niveau
+            self.__initiative = new_niveau
         
-        elif isinstance(self, Mage):
-    
+        else:
+            raise TypeError("La nouvelle valeur du niveau n'est pas un int")
 
+       
     def __attaque(self, cible:'Personnage') -> str:
         # Self frappe la cible
         if self.__initiative > cible.initiative:

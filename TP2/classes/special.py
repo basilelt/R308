@@ -10,6 +10,26 @@ class Guerrier(Personnage):
         self.initiative = niveau * 4 + 6
 
 
+    # Getters
+    # Récupère le niveau
+    @property
+    def lvl(self) -> int:
+        return self.niveau
+    
+
+    # Setters
+    @lvl.setter
+    def lvl(self, new_niveau):
+        if isinstance(new_niveau, int):
+            self.niveau = new_niveau
+            self.pv = new_niveau * 8 + 4
+            self.initiative = new_niveau * 4 + 6
+        
+        else:
+            raise TypeError("La nouvelle valeur du niveau n'est pas un int")
+        
+
+
     def degats(self) -> float:
         return self.niveau * 2
     
@@ -27,6 +47,26 @@ class Mage(Personnage):
         
         self.__mana = niveau * 5
     
+    
+    # Getters
+    # Récupère le niveau
+    @property
+    def lvl(self) -> int:
+        return self.niveau
+
+    
+    # Setters
+    @lvl.setter
+    def lvl(self, new_niveau):
+        if isinstance(new_niveau, int):
+            self.niveau = new_niveau
+            self.pv = new_niveau * 5 + 10
+            self.initiative = new_niveau * 6 + 4
+            self.__mana = new_niveau * 5
+        
+        else:
+            raise TypeError("La nouvelle valeur du niveau n'est pas un int")
+
 
     def degats(self) -> float:
         # Tant qu'il a du mana
@@ -41,3 +81,5 @@ class Mage(Personnage):
     def soigner(self) -> None:
         self.pv = self.niveau * 5 + 10
         self.__mana = self.niveau * 5
+
+
