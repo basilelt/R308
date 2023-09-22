@@ -78,7 +78,7 @@ class Personnage:
 
     # Setters
     @pv.setter
-    def pv(self, new_pv:float):
+    def pv(self, new_pv:float) -> None:
         """
         fonction permettant de changer les pv d'un personnage
 
@@ -93,7 +93,7 @@ class Personnage:
             raise TypeError("La nouvelle valeur des pv n'est pas un int ou un float")
         
     @initiative.setter
-    def initiative(self, new_initiative):
+    def initiative(self, new_initiative:int) -> None:
         """
         fonction permettant de changer l'initiative d'un personnage
 
@@ -108,11 +108,11 @@ class Personnage:
             raise TypeError("La nouvelle valeur de l'initiative n'est pas un int")
         
     @niveau.setter
-    def niveau(self, new_niveau):
+    def niveau(self, new_niveau:int) -> None:
         """
-        fonction permettant de changer l'initiative d'un personnage
+        fonction permettant de changer le niveau d'un personnage
 
-            :param new_initiative: nouvelle valeur de l'initiative du personnage
+            :param new_niveau: nouvelle valeur du niveau du personnage
             :type new_initiative: int
             :raises: TypeError
         """
@@ -126,6 +126,14 @@ class Personnage:
 
        
     def __attaque(self, cible:'Personnage') -> str:
+        """
+        fonction permettant de mettre en place un round d'attaque entre 2 personnages
+
+            :param cible: Personnage cible de l'attaquant
+            :type cible: Personnage
+            :return: informations des dégats subit
+            :rtype: str
+        """
         # Self frappe la cible
         if self.__initiative > cible.initiative:
             # Si l'attaque de self est supérieure ou égale aux pv de la cible, celle-ci meurt
@@ -197,6 +205,14 @@ class Personnage:
 
 
     def combat(self, cible:'Personnage') -> str:
+        """
+        fonction permettant de mettre en place un combat complet entre 2 personnages
+
+            :param cible: Personnage cible de l'attaquant
+            :type cible: Personnage
+            :return: informations de fin du combat (gagnant)
+            :rtype: str
+        """
         # Tant que les deux personnages ont encore de la vie le combat continue
         while self.__pv > 0 and cible.pv > 0:
             print(self.__attaque(cible))

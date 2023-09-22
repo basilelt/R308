@@ -25,7 +25,14 @@ class Joueur:
     # Setters
     # Remplis la liste de personnages
     @personnages.setter
-    def personnages(self, personnage:Personnage):
+    def personnages(self, personnage) -> None:
+        """
+        fonction permettant de remplir la liste de personnage d'un joueur
+
+            :param personnage: personnage à ajouter à la liste du joueur
+            :type personnage: Personnage, list
+            :raises: TypeError
+        """
         if isinstance(personnage, Personnage):
             if (len(self.__personnages) < self.__nb_perso) and (personnage not in self.__personnages):
                 self.__personnages.append(personnage)
@@ -39,6 +46,15 @@ class Joueur:
         
     
     def personnage(self, selector) -> Personnage:
+        """
+        fonction permettant de séléctionner une personnage d'une liste d'un joueur
+
+            :param selector: selecteur du personnage
+            :type cible: int, str, Personnage
+            :return: personnage
+            :rtype: Personnage
+            :raises: TypeError
+        """
         if isinstance(selector, int):
             return self.__personnages[selector - 1]
         
@@ -56,7 +72,14 @@ class Joueur:
             raise TypeError("Le selecteur de personnage donné n'est ni un int, ni un str, ni un Personnage")
 
 
-    def eliminer(self, selector):
+    def eliminer(self, selector) -> None:
+        """
+        fonction permettant de séléctionner une personnage d'une liste d'un joueur puis de l'enlever
+
+            :param selector: selecteur du personnage
+            :type cible: int, str, Personnage
+            :raises: TypeError
+        """
         if isinstance(selector, int):
             self.__personnages.remove(self.__personnages[selector])
         

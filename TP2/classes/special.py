@@ -19,7 +19,14 @@ class Guerrier(Personnage):
 
     # Setters
     @lvl.setter
-    def lvl(self, new_niveau):
+    def lvl(self, new_niveau:int) -> None:
+        """
+        fonction permettant de changer le niveau d'un guerrier
+
+            :param new_niveau: nouvelle valeur du niveau du guerrier
+            :type new_niveau: int
+            :raises: TypeError
+        """
         if isinstance(new_niveau, int):
             self.niveau = new_niveau
             self.pv = new_niveau * 8 + 4
@@ -57,7 +64,14 @@ class Mage(Personnage):
     
     # Setters
     @lvl.setter
-    def lvl(self, new_niveau):
+    def lvl(self, new_niveau:int) -> None:
+        """
+        fonction permettant de changer le niveau d'un mage
+
+            :param new_niveau: nouvelle valeur du niveau du mage
+            :type new_niveau: int
+            :raises: TypeError
+        """
         if isinstance(new_niveau, int):
             self.niveau = new_niveau
             self.pv = new_niveau * 5 + 10
