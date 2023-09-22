@@ -5,35 +5,41 @@ import special
 # Classe pour les personnage d'un MMORPG
 class Personnage:
     """
-    Classe définissant une personnage.
+    Classe définissant un personnage.
 
-    .. py:attribute:: matiere:
+        .. py:attribute:: pseudo:
 
-        matière de la tasse, attribut de classe
+            pseudo du personnage, attribut d'instance
 
-    .. py:attribute:: couleur:
+        .. py:attribute:: niveau:
 
-        couleur de la tasse, attribut d'instance
+            niveau du personnage, attribut d'instance
 
-    .. py:attribute:: contenance:
+        .. py:attribute:: pv:
 
-        contenance de la tasse, attribut d'instance
+            pv du personnage, attribut d'instance
 
-    .. py:attribute:: marque:
+        .. py:attribute:: initiative:
 
-        marque de la tasse, attribut d'instance.
+            initiative du personnage, attribut d'instance.
     """
+
 
     def __init__(self, pseudo:str, niveau:int = 1):
         """
-        méthode d'instanciation d'une tasse
+        méthode d'instanciation d'un personnage
 
-        :param couleur: couleur de la tasse
-        :type couleur: str
-        :param contenance: contenance de la tasse en ml
-        :type contenance: int
-        :param marque: marque de la tasse
-        :type marque: str
+            :param pseudo: pseudo du personnage
+            :type pseudo: str
+            
+            :param niveau: niveau du personnage
+            :type niveau: int
+            
+            :param pv: pv du personnage
+            :type pv: float
+
+            :param initiative: initiative du personnage
+            :type initiative: int
         """
         if isinstance(pseudo, str) and isinstance(niveau, int):
             self.__pseudo:str = pseudo
@@ -74,13 +80,11 @@ class Personnage:
     @pv.setter
     def pv(self, new_pv:float):
         """
-        fonction permettant d'accélerer
+        fonction permettant de changer les pv d'un personnage
 
-        :param vitesse: nb de vitesse passée
-        :type vitesse: int
-        :return: vitesse courante
-        :rtype: int
-        :raises:
+            :param new_pv: nouvelle valeur de pv du personnage
+            :type new_pv: float
+            :raises: TypeError
         """
         if isinstance(new_pv, Union[int, float]):
             self.__pv = new_pv
@@ -90,6 +94,13 @@ class Personnage:
         
     @initiative.setter
     def initiative(self, new_initiative):
+        """
+        fonction permettant de changer l'initiative d'un personnage
+
+            :param new_initiative: nouvelle valeur de l'initiative du personnage
+            :type new_initiative: int
+            :raises: TypeError
+        """
         if isinstance(new_initiative, int):
             self.__initiative = new_initiative
         
@@ -98,6 +109,13 @@ class Personnage:
         
     @niveau.setter
     def niveau(self, new_niveau):
+        """
+        fonction permettant de changer l'initiative d'un personnage
+
+            :param new_initiative: nouvelle valeur de l'initiative du personnage
+            :type new_initiative: int
+            :raises: TypeError
+        """
         if isinstance(new_niveau, int):
             self.__niveau = new_niveau
             self.__pv = new_niveau
