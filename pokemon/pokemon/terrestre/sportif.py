@@ -1,9 +1,10 @@
-from terrestre import Terrestre
+from pokemon.terrestre.terrestre import Terrestre
+from typing import Union
 
 
 class Sportif(Terrestre):
     def __init__(self, nom:str, poids:float, nb_patte:int, taille:float, frequence:float):
-        if isinstance(frequence, float):
+        if isinstance(frequence, Union[int, float]):
             super().__init__(nom, poids, nb_patte, taille)
             self.__frequence = frequence
         else:

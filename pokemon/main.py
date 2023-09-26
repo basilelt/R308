@@ -1,10 +1,4 @@
-from sys import exit, path
-from os import path as ospath
-
-# Ajoute le dossier classes au path
-path.insert(0, ospath.join(__file__.replace("main.py", ""), "pokemon"))
-
-
+from sys import exit
 from pokemon.terrestre.sportif import Sportif
 from pokemon.terrestre.casanier import Casanier
 from pokemon.aquatic.mer import Mer

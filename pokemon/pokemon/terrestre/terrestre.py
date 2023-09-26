@@ -1,16 +1,11 @@
 from abc import ABC
-from sys import path
-
-
-# Ajoute le dossier classes au path
-path.insert(0, __file__.replace("terrestre/terrestre.py", ""))
-
+from typing import Union
 from pokemon.pokemon import Pokemon
 
 
 class Terrestre(Pokemon, ABC):
-    def __init__(self, nom:str, poids:float, nb_patte:int, taille:float):
-        if isinstance(nb_patte, int) and isinstance(taille, float):
+    def __init__(self, nom:str, poids:float, taille:float, nb_patte:int):
+        if isinstance(nb_patte, int) and isinstance(taille, Union[int, float]):
             Pokemon().__init__(self, nom, poids)
             self.__nb_patte = nb_patte
             self.__taille = taille

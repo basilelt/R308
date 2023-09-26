@@ -1,4 +1,4 @@
-from aquatic import Aquatic
+from pokemon.aquatic.aquatic import Aquatic
 
 
 class Croisiere(Aquatic):

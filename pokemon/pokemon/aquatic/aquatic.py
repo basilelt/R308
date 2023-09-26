@@ -1,8 +1,4 @@
 from abc import ABC
-from sys import path
-
-# Ajoute le dossier classes au path
-path.insert(0, __file__.replace("aquatic/aquatic.py", ""))
 
 from pokemon.pokemon import Pokemon
 

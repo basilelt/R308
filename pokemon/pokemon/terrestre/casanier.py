@@ -1,4 +1,4 @@
-from terrestre import Terrestre
+from pokemon.terrestre.terrestre import Terrestre
 from datetime import time
 
 
